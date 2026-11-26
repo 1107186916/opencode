@@ -969,6 +969,8 @@ function mockHandlers(
         usageLimits: () => Effect.succeed({ location: location(config), data: null }),
         // No scenario runs background jobs (Code Mode scripts or subagent work), so none is running.
         jobList: () => Effect.succeed({ data: [] }),
+        // No scenario turns on a server feature flag.
+        flagGet: () => Effect.succeed({ location: location(config), data: {} }),
         worktreeList: () =>
           Effect.sync(() => {
             if (config.worktrees) return resolve(config.worktrees)
